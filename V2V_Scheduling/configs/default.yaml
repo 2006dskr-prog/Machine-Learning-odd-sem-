@@ -1,0 +1,33 @@
+simulation:
+  num_vehicles: 6
+  episode_steps: 200
+  dt_seconds: 0.1
+  transmission_resources: 2      # restored to 2 (Path B fix)
+  max_queue_size: 10
+
+messages:
+  safety_priority: 1.0
+  traffic_priority: 0.6
+  routine_priority: 0.2
+  arrival_prob: 0.8              # Path B congestion
+
+reward:
+  alpha_semantic: 2.0            # Path B: reduced from 5.0
+  beta_aoi: 10.0                 # Path B: increased from 2.0
+  gamma_penalty: 0.1
+
+training:
+  algorithm: MAPPO
+  total_episodes: 5000
+  rollout_steps: 400             # Path B: was 200
+  update_epochs: 10
+  minibatch_size: 256
+  learning_rate: 0.0003
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_epsilon: 0.2
+  entropy_coefficient: 0.05      # Path B: was 0.01
+  value_coefficient: 0.5
+  max_grad_norm: 0.5
+  hidden_size: 128
+  random_seed: 42
